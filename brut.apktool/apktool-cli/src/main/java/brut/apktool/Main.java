@@ -1,17 +1,17 @@
 /**
- *  Copyright 2014 Ryszard Wiśniewski <brut.alll@gmail.com>
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ * Copyright 2014 Ryszard Wiśniewski <brut.alll@gmail.com>
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package brut.apktool;
@@ -87,10 +87,13 @@ public class Main {
         // @todo use new ability of apache-commons-cli to check hasOption for non-prefixed items
         boolean cmdFound = false;
         for (String opt : commandLine.getArgs()) {
-            if (opt.equalsIgnoreCase("d") || opt.equalsIgnoreCase("decode")) {
+            if (opt.equalsIgnoreCase("p") || opt.equalsIgnoreCase("public")) {
                 cmdDecode(commandLine);
                 cmdFound = true;
-            } else if (opt.equalsIgnoreCase("b") || opt.equalsIgnoreCase("build")) {
+            } /*else if (opt.equalsIgnoreCase("d") || opt.equalsIgnoreCase("decode")) {
+                cmdDecode(commandLine);
+                cmdFound = true;
+            }else if (opt.equalsIgnoreCase("b") || opt.equalsIgnoreCase("build")) {
                 cmdBuild(commandLine);
                 cmdFound = true;
             } else if (opt.equalsIgnoreCase("if") || opt.equalsIgnoreCase("install-framework")) {
@@ -99,7 +102,7 @@ public class Main {
             } else if (opt.equalsIgnoreCase("publicize-resources")) {
                 cmdPublicizeResources(commandLine);
                 cmdFound = true;
-            }
+            }*/
         }
 
         // if no commands ran, run the version / usage check.
@@ -119,38 +122,38 @@ public class Main {
         String apkName = (String) cli.getArgList().get(paraCount - 1);
         File outDir = null;
 
-        // check for options
-        if (cli.hasOption("s") || cli.hasOption("no-src")) {
-            decoder.setDecodeSources(ApkDecoder.DECODE_SOURCES_NONE);
-        }
-        if (cli.hasOption("d") || cli.hasOption("debug")) {
-            System.err.println("SmaliDebugging has been removed in 2.1.0 onward. Please see: https://github.com/iBotPeaches/Apktool/issues/1061");
-            System.exit(1);
-        }
-        if (cli.hasOption("b") || cli.hasOption("no-debug-info")) {
-            decoder.setBaksmaliDebugMode(false);
-        }
-        if (cli.hasOption("t") || cli.hasOption("frame-tag")) {
-            decoder.setFrameworkTag(cli.getOptionValue("t"));
-        }
-        if (cli.hasOption("f") || cli.hasOption("force")) {
-            decoder.setForceDelete(true);
-        }
-        if (cli.hasOption("r") || cli.hasOption("no-res")) {
-            decoder.setDecodeResources(ApkDecoder.DECODE_RESOURCES_NONE);
-        }
-        if (cli.hasOption("k") || cli.hasOption("keep-broken-res")) {
-            decoder.setKeepBrokenResources(true);
-        }
-        if (cli.hasOption("p") || cli.hasOption("frame-path")) {
-            decoder.setFrameworkDir(cli.getOptionValue("p"));
-        }
-        if (cli.hasOption("m") || cli.hasOption("match-original")) {
-            decoder.setAnalysisMode(true, false);
-        }
-        if (cli.hasOption("api")) {
-            decoder.setApi(Integer.parseInt(cli.getOptionValue("api")));
-        }
+//        // check for options
+//        if (cli.hasOption("s") || cli.hasOption("no-src")) {
+//            decoder.setDecodeSources(ApkDecoder.DECODE_SOURCES_NONE);
+//        }
+//        if (cli.hasOption("d") || cli.hasOption("debug")) {
+//            System.err.println("SmaliDebugging has been removed in 2.1.0 onward. Please see: https://github.com/iBotPeaches/Apktool/issues/1061");
+//            System.exit(1);
+//        }
+//        if (cli.hasOption("b") || cli.hasOption("no-debug-info")) {
+//            decoder.setBaksmaliDebugMode(false);
+//        }
+//        if (cli.hasOption("t") || cli.hasOption("frame-tag")) {
+//            decoder.setFrameworkTag(cli.getOptionValue("t"));
+//        }
+//        if (cli.hasOption("f") || cli.hasOption("force")) {
+//            decoder.setForceDelete(true);
+//        }
+//        if (cli.hasOption("r") || cli.hasOption("no-res")) {
+//            decoder.setDecodeResources(ApkDecoder.DECODE_RESOURCES_NONE);
+//        }
+//        if (cli.hasOption("k") || cli.hasOption("keep-broken-res")) {
+//            decoder.setKeepBrokenResources(true);
+//        }
+//        if (cli.hasOption("p") || cli.hasOption("frame-path")) {
+//            decoder.setFrameworkDir(cli.getOptionValue("p"));
+//        }
+//        if (cli.hasOption("m") || cli.hasOption("match-original")) {
+//            decoder.setAnalysisMode(true, false);
+//        }
+//        if (cli.hasOption("api")) {
+//            decoder.setApi(Integer.parseInt(cli.getOptionValue("api")));
+//        }
         if (cli.hasOption("o") || cli.hasOption("output")) {
             outDir = new File(cli.getOptionValue("o"));
             decoder.setOutDir(outDir);
@@ -406,16 +409,16 @@ public class Main {
 
         // add all, loop existing cats then manually add advance
         for (Object op : normalOptions.getOptions()) {
-            allOptions.addOption((Option)op);
+            allOptions.addOption((Option) op);
         }
         for (Object op : DecodeOptions.getOptions()) {
-            allOptions.addOption((Option)op);
+            allOptions.addOption((Option) op);
         }
         for (Object op : BuildOptions.getOptions()) {
-            allOptions.addOption((Option)op);
+            allOptions.addOption((Option) op);
         }
         for (Object op : frameOptions.getOptions()) {
-            allOptions.addOption((Option)op);
+            allOptions.addOption((Option) op);
         }
         allOptions.addOption(analysisOption);
         allOptions.addOption(debugDecOption);
@@ -449,10 +452,10 @@ public class Main {
                         "with smali v" + ApktoolProperties.get("smaliVersion") +
                         " and baksmali v" + ApktoolProperties.get("baksmaliVersion") + "\n" +
                         "Copyright 2014 Ryszard Wiśniewski <brut.alll@gmail.com>\n" +
-                        "Updated by Connor Tumbleson <connor.tumbleson@gmail.com>" );
+                        "Updated by Connor Tumbleson <connor.tumbleson@gmail.com>");
         if (isAdvanceMode()) {
             System.out.println("Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)\n");
-        }else {
+        } else {
             System.out.println("");
         }
 
@@ -485,7 +488,7 @@ public class Main {
             return;
         }
 
-        Handler handler = new Handler(){
+        Handler handler = new Handler() {
             @Override
             public void publish(LogRecord record) {
                 if (getFormatter() == null) {
@@ -503,10 +506,14 @@ public class Main {
                     reportError(null, exception, ErrorManager.FORMAT_FAILURE);
                 }
             }
+
             @Override
-            public void close() throws SecurityException {}
+            public void close() throws SecurityException {
+            }
+
             @Override
-            public void flush(){}
+            public void flush() {
+            }
         };
 
         logger.addHandler(handler);

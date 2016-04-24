@@ -76,16 +76,16 @@ final public class AndrolibResources {
             case 1:
                 pkg = pkgs[0];
                 break;
-            case 2:
-                if (pkgs[0].getName().equals("android")) {
-                    LOGGER.warning("Skipping \"android\" package group");
-                    pkg = pkgs[1];
-                    break;
-                } else if (pkgs[0].getName().equals("com.htc")) {
-                    LOGGER.warning("Skipping \"htc\" package group");
-                    pkg = pkgs[1];
-                    break;
-                }
+//            case 2:
+//                if (pkgs[0].getName().equals("android")) {
+//                    LOGGER.warning("Skipping \"android\" package group");
+//                    pkg = pkgs[1];
+//                    break;
+//                } else if (pkgs[0].getName().equals("com.htc")) {
+//                    LOGGER.warning("Skipping \"htc\" package group");
+//                    pkg = pkgs[1];
+//                    break;
+//                }
 
             default:
                 pkg = selectPkgWithMostResSpecs(pkgs);
@@ -254,22 +254,22 @@ final public class AndrolibResources {
         for (ResPackage pkg : resTable.listMainPackages()) {
             attrDecoder.setCurrentPackage(pkg);
 
-            LOGGER.info("Decoding file-resources...");
-            for (ResResource res : pkg.listFiles()) {
-                fileDecoder.decode(res, in, out);
-            }
-
-            LOGGER.info("Decoding values */* XMLs...");
-            for (ResValuesFile valuesFile : pkg.listValuesFiles()) {
-                generateValuesFile(valuesFile, out, xmlSerializer);
-            }
+//            LOGGER.info("Decoding file-resources...");
+//            for (ResResource res : pkg.listFiles()) {
+//                fileDecoder.decode(res, in, out);
+//            }
+//
+//            LOGGER.info("Decoding values */* XMLs...");
+//            for (ResValuesFile valuesFile : pkg.listValuesFiles()) {
+//                generateValuesFile(valuesFile, out, xmlSerializer);
+//            }
             generatePublicXml(pkg, out, xmlSerializer);
         }
 
-        AndrolibException decodeError = duo.m2.getFirstError();
-        if (decodeError != null) {
-            throw decodeError;
-        }
+//        AndrolibException decodeError = duo.m2.getFirstError();
+//        if (decodeError != null) {
+//            throw decodeError;
+//        }
     }
 
     public void setSdkInfo(Map<String, String> map) {
