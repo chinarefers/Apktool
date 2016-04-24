@@ -20,19 +20,27 @@ import brut.androlib.res.util.ExtFile;
 import brut.common.BrutException;
 import brut.directory.FileDirectory;
 import brut.util.OS;
+import org.custommonkey.xmlunit.DetailedDiff;
+import org.custommonkey.xmlunit.Diff;
+import org.custommonkey.xmlunit.ElementNameAndAttributeQualifier;
+import org.custommonkey.xmlunit.ElementQualifier;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import org.custommonkey.xmlunit.*;
-import org.junit.*;
-import static org.junit.Assert.*;
-import org.xml.sax.SAXException;
-
-import javax.imageio.ImageIO;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Ryszard Wiśniewski <brut.alll@gmail.com>
@@ -446,7 +454,7 @@ public class BuildAndDecodeTest {
             Reader test = new FileReader(new File(sTestNewDir, path));
 
             diff = new DetailedDiff(new Diff(control, test));
-        } catch (SAXException | IOException ex) {
+        } catch (Exception ex) {
             throw new BrutException(ex);
         }
 

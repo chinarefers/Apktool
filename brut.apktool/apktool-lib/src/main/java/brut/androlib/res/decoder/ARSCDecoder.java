@@ -18,17 +18,36 @@ package brut.androlib.res.decoder;
 
 import android.util.TypedValue;
 import brut.androlib.AndrolibException;
-import brut.androlib.res.data.*;
-import brut.androlib.res.data.value.*;
-import brut.util.Duo;
+import brut.androlib.res.data.ResConfigFlags;
+import brut.androlib.res.data.ResID;
+import brut.androlib.res.data.ResPackage;
+import brut.androlib.res.data.ResResSpec;
+import brut.androlib.res.data.ResResource;
 import brut.androlib.res.data.ResTable;
+import brut.androlib.res.data.ResType;
+import brut.androlib.res.data.ResTypeSpec;
+import brut.androlib.res.data.value.ResBagValue;
+import brut.androlib.res.data.value.ResBoolValue;
+import brut.androlib.res.data.value.ResFileValue;
+import brut.androlib.res.data.value.ResIntBasedValue;
+import brut.androlib.res.data.value.ResScalarValue;
+import brut.androlib.res.data.value.ResStringValue;
+import brut.androlib.res.data.value.ResValue;
+import brut.androlib.res.data.value.ResValueFactory;
+import brut.util.Duo;
 import brut.util.ExtDataInput;
 import com.peterfranza.LittleEndianDataInputStream;
-import java.io.*;
-import java.math.BigInteger;
-import java.util.*;
-import java.util.logging.Logger;
 import org.apache.commons.io.input.CountingInputStream;
+
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author Ryszard Wiśniewski <brut.alll@gmail.com>
@@ -494,7 +513,7 @@ public class ARSCDecoder {
     private ResType mType;
     private int mResId;
     private boolean[] mMissingResSpecs;
-    private HashMap<Byte, ResTypeSpec> mResTypeSpecs = new HashMap<>();
+    private HashMap<Byte, ResTypeSpec> mResTypeSpecs = new HashMap<Byte, ResTypeSpec>();
 
     private final static short ENTRY_FLAG_COMPLEX = 0x0001;
 

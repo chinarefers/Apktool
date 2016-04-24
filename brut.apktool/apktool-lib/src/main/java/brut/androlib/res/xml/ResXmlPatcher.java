@@ -81,8 +81,7 @@ public final class ResXmlPatcher {
                     }
                 }
 
-            }  catch (SAXException | ParserConfigurationException | IOException |
-                    XPathExpressionException | TransformerException ignored) {
+            }  catch (Exception  ignored) {
             }
         }
     }
@@ -115,7 +114,7 @@ public final class ResXmlPatcher {
                     return (String) result;
                 }
 
-            }  catch (SAXException | ParserConfigurationException | IOException | XPathExpressionException ignored) {
+            }  catch (Exception ignored) {
             }
         }
 
@@ -145,7 +144,7 @@ public final class ResXmlPatcher {
                 }
                 saveDocument(file, doc);
 
-            } catch (SAXException | ParserConfigurationException | IOException | TransformerException ignored) {
+            } catch (Exception ignored) {
             }
         }
     }
@@ -170,7 +169,7 @@ public final class ResXmlPatcher {
             nodeAttr.setNodeValue(packageOriginal);
             saveDocument(file, doc);
 
-        } catch (SAXException | ParserConfigurationException | IOException | TransformerException ignored) {
+        } catch (Exception ignored) {
         }
     }
 

@@ -16,25 +16,35 @@
 
 package brut.apktool;
 
-import brut.androlib.*;
+import brut.androlib.Androlib;
+import brut.androlib.AndrolibException;
+import brut.androlib.ApkDecoder;
+import brut.androlib.ApkOptions;
+import brut.androlib.ApktoolProperties;
 import brut.androlib.err.CantFindFrameworkResException;
 import brut.androlib.err.InFileNotFoundException;
 import brut.androlib.err.OutDirExistsException;
 import brut.common.BrutException;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.*;
-
 import brut.directory.DirectoryException;
-import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.ErrorManager;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * @author Ryszard Wiśniewski <brut.alll@gmail.com>

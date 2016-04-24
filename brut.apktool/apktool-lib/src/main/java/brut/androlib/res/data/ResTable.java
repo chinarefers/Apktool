@@ -40,7 +40,7 @@ public class ResTable {
     private boolean mAnalysisMode = false;
     private boolean mSharedLibrary = false;
 
-    private Map<String, String> mSdkInfo = new LinkedHashMap<>();
+    private Map<String, String> mSdkInfo = new LinkedHashMap<String, String>();
     private VersionInfo mVersionInfo = new VersionInfo();
 
     public ResTable() {

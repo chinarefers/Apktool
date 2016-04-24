@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public class ResUnknownFiles {
 
-    private final Map<String, String> mUnknownFiles = new LinkedHashMap<>();
+    private final Map<String, String> mUnknownFiles = new LinkedHashMap<String, String>();
 
     public void addUnknownFileInfo(String file, String value) {
         mUnknownFiles.put(file, value);

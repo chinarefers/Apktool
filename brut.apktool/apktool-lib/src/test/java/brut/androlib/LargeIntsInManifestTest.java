@@ -18,19 +18,21 @@ package brut.androlib;
 
 import brut.androlib.res.util.ExtFile;
 import brut.common.BrutException;
-import brut.directory.FileDirectory;
 import brut.util.OS;
-import java.io.*;
+import org.custommonkey.xmlunit.DetailedDiff;
+import org.custommonkey.xmlunit.Diff;
+import org.custommonkey.xmlunit.ElementQualifier;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
+import java.io.Reader;
 import java.util.logging.Logger;
 
-import org.custommonkey.xmlunit.*;
-import org.junit.*;
-import static org.junit.Assert.*;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertTrue;
 
 public class LargeIntsInManifestTest {
 
@@ -82,7 +84,7 @@ public class LargeIntsInManifestTest {
             Reader test = new FileReader(new File(sTestNewDir, path));
 
             diff = new DetailedDiff(new Diff(control, test));
-        } catch (SAXException | IOException ex) {
+        } catch (Exception ex) {
             throw new BrutException(ex);
         }
 

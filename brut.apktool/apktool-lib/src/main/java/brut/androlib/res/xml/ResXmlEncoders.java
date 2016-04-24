@@ -17,12 +17,11 @@
 package brut.androlib.res.xml;
 
 import brut.util.Duo;
+import org.apache.commons.lang3.StringUtils;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Ryszard Wiśniewski <brut.alll@gmail.com>
@@ -177,11 +176,11 @@ public final class ResXmlEncoders {
         }
         int pos;
         int pos2 = 0;
-        List<Integer> nonPositional = new ArrayList<>();
-        List<Integer> positional = new ArrayList<>();
+        List<Integer> nonPositional = new ArrayList<Integer>();
+        List<Integer> positional = new ArrayList<Integer>();
 
         if (str == null) {
-            return new Duo<>(nonPositional, positional);
+            return new Duo<List<Integer>, List<Integer>>(nonPositional, positional);
         }
 
         int length = str.length();
@@ -210,7 +209,7 @@ public final class ResXmlEncoders {
             }
         }
 
-        return new Duo<>(nonPositional, positional);
+        return new Duo<List<Integer>, List<Integer>>(nonPositional, positional);
     }
 
     private static boolean isPrintableChar(char c) {

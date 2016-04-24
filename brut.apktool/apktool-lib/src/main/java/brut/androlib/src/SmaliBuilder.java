@@ -19,15 +19,14 @@ package brut.androlib.src;
 import brut.androlib.AndrolibException;
 import brut.androlib.mod.SmaliMod;
 import brut.androlib.res.util.ExtFile;
-import brut.directory.DirectoryException;
-import java.io.*;
-import java.util.List;
-import java.util.logging.Logger;
-
-import org.antlr.runtime.RecognitionException;
-import org.apache.commons.io.IOUtils;
 import org.jf.dexlib2.writer.builder.DexBuilder;
 import org.jf.dexlib2.writer.io.FileDataStore;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Logger;
 
 /**
  * @author Ryszard Wiśniewski <brut.alll@gmail.com>
@@ -51,7 +50,7 @@ public class SmaliBuilder {
                 buildFile(fileName, dexBuilder);
             }
             dexBuilder.writeTo(new FileDataStore( new File(mDexFile.getAbsolutePath())));
-        } catch (IOException | DirectoryException ex) {
+        } catch (Exception ex) {
             throw new AndrolibException(ex);
         }
     }
@@ -66,7 +65,7 @@ public class SmaliBuilder {
                 if (!SmaliMod.assembleSmaliFile(inFile,dexBuilder, false, false)) {
                     throw new AndrolibException("Could not smali file: " + fileName);
                 }
-            } catch (IOException | RecognitionException ex) {
+            } catch (Exception ex) {
                 throw new AndrolibException(ex);
             }
         } else {
